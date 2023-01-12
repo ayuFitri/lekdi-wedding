@@ -174,7 +174,7 @@
 									<p>Kediaman Mempelai Wanita</p>
 									<p>Jl. Halmahera Rt01/rw17 Tempuran,</p>
 									<p>Ds. Pelem, Kec Pare, Kediri</p>
-									<p><a href="#" class="btn btn-default btn-info">Lihat Lokasi</a></p>
+									<p><a href="https://goo.gl/maps/naXCJTSSWpUJbVoq6" class="btn btn-default btn-info">Lihat Lokasi</a></p>
 								</div>
 							</div>
 							<div class="col-md-6 col-sm-6 text-center">
@@ -193,7 +193,7 @@
 									<p>Kediaman Mempelai Wanita</p>
 									<p>Jl. Halmahera Rt01/rw17 Tempuran,</p>
 									<p>Ds. Pelem, Kec Pare, Kediri</p>
-									<p><a href="#" class="btn btn-default btn-info">Lihat Lokasi</a></p>
+									<p><a href="https://goo.gl/maps/naXCJTSSWpUJbVoq6" class="btn btn-default btn-info">Lihat Lokasi</a></p>
 								</div>
 							</div>
 						</div>
@@ -270,9 +270,14 @@
 					<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 						<h2>Kado Pernikahan</h2>
 						<p style="color: aliceblue;">Tanpa mengurangi rasa hormat, bagi Bapak/ibu/saudara/i yang ingin memberikan tanda kasih untuk kami, dapat melalui : </p>
-						<p style="color: aliceblue;">BCA - 1400838948</p>
+						<p style="color: aliceblue;" id="copy-input">BCA - 1400838948</p>
 						<p style="color: aliceblue;">an. Oktaviana Dwi Anjani</p>
 						<p><a href="#" class="btn btn-default btn-primary">Salin Nomor Rekening</a></p>
+						<button class="btn btn-default" type="button" id="copy-button"
+          				data-toggle="tooltip" data-placement="button"
+          				title="Menyalin ke clipboard">
+        				Salin Nomor Rekening
+      					</button>
 						<h2>Terima kasih</h2>
 					</div>
 				</div>
@@ -375,6 +380,30 @@
         day: d.getDate(),
         enableUtc: false
     });
+
+$(document).ready(function() {
+  $('#copy-button').tooltip();
+  $('#copy-button').bind('click', function() {
+    var input = document.querySelector('#copy-input');
+    try {
+      var success = navigator.clipboard.writeText(input.textContent.slice(6,16));
+      if (success) {
+        $('#copy-button').trigger('copied', ['Tersalin!']);
+      } else {
+        $('#copy-button').trigger('copied', ['Salin dengan Ctrl-c']);
+      }
+    } catch (err) {
+      $('#copy-button').trigger('copied', ['Salin dengan Ctrl-c']);
+    }
+  });
+  $('#copy-button').bind('copied', function(event, message) {
+    $(this).attr('title', message)
+        .tooltip('fixTitle')
+        .tooltip('show')
+        .attr('title', "Menyalin ke clipboard")
+        .tooltip('fixTitle');
+  });
+});
 </script>
 
 	</body>
