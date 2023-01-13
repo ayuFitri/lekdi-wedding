@@ -366,29 +366,47 @@
         enableUtc: false
     });
 
-$(document).ready(function() {
-  $('#copy-button').tooltip();
-  $('#copy-button').bind('click', function() {
-    var input = document.querySelector('#copy-input');
-    try {
-      var success = navigator.clipboard.writeText(input.textContent.slice(6,16));
-      if (success) {
-        $('#copy-button').trigger('copied', ['Tersalin!']);
-      } else {
-        $('#copy-button').trigger('copied', ['Salin dengan Ctrl-c']);
-      }
-    } catch (err) {
-      $('#copy-button').trigger('copied', ['Salin dengan Ctrl-c']);
-    }
-  });
-  $('#copy-button').bind('copied', function(event, message) {
-    $(this).attr('title', message)
-        .tooltip('fixTitle')
-        .tooltip('show')
-        .attr('title', "Menyalin ke clipboard")
-        .tooltip('fixTitle');
-  });
-});
+	$(document).ready(function() {
+  	$('#copy-button').tooltip();
+  	$('#copy-button').bind('click', function() {
+    	var input = document.querySelector('#copy-input');
+    	try {
+      		var success = navigator.clipboard.writeText(input.textContent.slice(6,16));
+      		if (success) {
+        		$('#copy-button').trigger('copied', ['Tersalin!']);
+      		} else {
+        		$('#copy-button').trigger('copied', ['Salin dengan Ctrl-c']);
+      		}
+    	} catch (err) {
+      		$('#copy-button').trigger('copied', ['Salin dengan Ctrl-c']);
+    	}
+  	});
+  		$('#copy-button').bind('copied', function(event, message) {
+    		$(this).attr('title', message)
+        	.tooltip('fixTitle')
+        	.tooltip('show')
+        	.attr('title', "Menyalin ke clipboard")
+        	.tooltip('fixTitle');
+  		});
+	});
+
+	var getUrlParameter = function getUrlParameter(sParam) {
+    	var sPageURL = window.location.search.substring(1),
+        	sURLVariables = sPageURL.split('&'),
+        	sParameterName,
+        	i;
+
+    	for (i = 0; i < sURLVariables.length; i++) {
+        	sParameterName = sURLVariables[i].split('=');
+
+        	if (sParameterName[0] === sParam) {
+            	return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        	}
+    	}
+    	return false;
+	};
+var namaundangan = getUrlParameter('untuk');
+console.log(namaundangan)
 </script>
 
 	</body>
