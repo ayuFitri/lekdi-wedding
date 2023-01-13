@@ -405,9 +405,11 @@
     	}
     	return false;
 	};
-var namaundangan = getUrlParameter('untuk');
-console.log(namaundangan)
-	$('#nama-tamu').text(namaundangan)
+	var namaundangan = getUrlParameter('untuk');
+	if(namaundangan){
+		$('#nama-tamu').text(namaundangan)
+	}
+	$('#nama-tamu').text('Nama Tamu Undangan')
 </script>
 
 	</body>
