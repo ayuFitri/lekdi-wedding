@@ -81,7 +81,7 @@
 							<h1 style="font-size: 50px;">Jani &amp; Adhi</h1>
 							<p style="color: aliceblue;">Kepada Yth.</p>
 							<p style="color: aliceblue;"></p>
-							<p><a class="btn btn-default btn-sm btn-open">Buka Undangan</a></p>
+							<p><a href="#" class="btn btn-default btn-sm">Buka Undangan</a></p>
 						</div>
 					</div>
 				</div>
@@ -408,8 +408,12 @@
     	}
     	return false;
 	};
-var namaundangan = getUrlParameter('untuk');
-console.log(namaundangan)
+	var namaundangan = getUrlParameter('untuk');
+	if(namaundangan){
+		$('#nama-tamu').text(namaundangan)
+	} else {
+		$('#nama-tamu').text('Nama Tamu Undangan')
+	}
 </script>
 
 	</body>
