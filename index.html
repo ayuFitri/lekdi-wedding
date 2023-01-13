@@ -81,7 +81,7 @@
 							<h1 style="font-size: 50px;">Jani &amp; Adhi</h1>
 							<p style="color: aliceblue;">Kepada Yth.</p>
 							<p style="color: aliceblue;"></p>
-							<p><a href="#" class="btn btn-default btn-sm">Buka Undangan</a></p>
+							<p><a class="btn btn-default btn-sm btn-open">Buka Undangan</a></p>
 						</div>
 					</div>
 				</div>
@@ -89,7 +89,7 @@
 		</div>
 	</header>
 
-	<div id="fh5co-couple">
+	<div id="fh5co-couple" class="hide-content" style="display: none;">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
@@ -131,7 +131,7 @@
 		</div>
 	</div>
 
-	<div id="fh5co-event" class="fh5co-bg" style="background-image:url(images/img_bg1.jpg);">
+	<div id="fh5co-event" class="fh5co-bg hide-content" style="background-image:url(images/img_bg1.jpg);display: none;">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row">
@@ -189,7 +189,7 @@
 		</div>
 	</div>
 
-	<div id="fh5co-started" class="fh5co-bg" style="background-image:url(images/img_bg_1.jpg);">
+	<div id="fh5co-started" class="fh5co-bg hide-content" style="background-image:url(images/img_bg_1.jpg);display: none;">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
@@ -270,7 +270,7 @@
 		</div>
 	</div> -->
 
-	<div id="fh5co-started" class="fh5co-bg" style="background-image:url(images/img_bg_5.jpg);">
+	<div id="fh5co-started" class="fh5co-bg hide-content" style="background-image:url(images/img_bg_5.jpg);display: none;">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row animate-box">
@@ -301,7 +301,7 @@
 			</div>
 		</div>
 	</div>
-	<footer id="fh5co-footer" role="contentinfo">
+	<footer id="fh5co-footer" class="hide-content" role="contentinfo" style="display: none;">
 		<div class="container">
 
 			<div class="row copyright">
@@ -367,20 +367,20 @@
     });
 
 	$(document).ready(function() {
-  	$('#copy-button').tooltip();
-  	$('#copy-button').bind('click', function() {
-    	var input = document.querySelector('#copy-input');
-    	try {
-      		var success = navigator.clipboard.writeText(input.textContent.slice(6,16));
-      		if (success) {
-        		$('#copy-button').trigger('copied', ['Tersalin!']);
-      		} else {
-        		$('#copy-button').trigger('copied', ['Salin dengan Ctrl-c']);
-      		}
-    	} catch (err) {
-      		$('#copy-button').trigger('copied', ['Salin dengan Ctrl-c']);
-    	}
-  	});
+  		$('#copy-button').tooltip();
+		$('#copy-button').bind('click', function() {
+			var input = document.querySelector('#copy-input');
+			try {
+				var success = navigator.clipboard.writeText(input.textContent.slice(6,16));
+				if (success) {
+					$('#copy-button').trigger('copied', ['Tersalin!']);
+				} else {
+					$('#copy-button').trigger('copied', ['Salin dengan Ctrl-c']);
+				}
+			} catch (err) {
+				$('#copy-button').trigger('copied', ['Salin dengan Ctrl-c']);
+			}
+		});
   		$('#copy-button').bind('copied', function(event, message) {
     		$(this).attr('title', message)
         	.tooltip('fixTitle')
@@ -388,6 +388,9 @@
         	.attr('title', "Menyalin ke clipboard")
         	.tooltip('fixTitle');
   		});
+		$('.btn-open').click(function () {
+			$('.hide-content').css("display","block");		
+		})
 	});
 
 	var getUrlParameter = function getUrlParameter(sParam) {
